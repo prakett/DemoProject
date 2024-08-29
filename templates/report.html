@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Results Report</h1>
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Score</th>
+    <th>Interpretation</th>
+  </tr>
+  <tr>
+    <td>Depression</td>
+    <td>{{ report['Depression Score'] | round(2) }}</td>
+    <td>{{ report['Depression Interpretation'] }}</td>
+  </tr>
+  <tr>
+    <td>Anxiety</td>
+    <td>{{ report['Anxiety Score'] | round(2) }}</td>
+    <td>{{ report['Anxiety Interpretation'] }}</td>
+  </tr>
+  <tr>
+    <td>Stress</td>
+    <td>{{ report['Stress Score'] | round(2) }}</td>
+    <td>{{ report['Stress Interpretation'] }}</td>
+  </tr>
+</table>
+<a href="{{ url_for('index') }}">Back to Questionnaire</a>
+</body>
+</html>
