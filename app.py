@@ -53,7 +53,7 @@ questions = [
     "I found it difficult to work up the initiative to do things"
 ]
 
-def transform_responses_to_3_features(responses):
+def transform_responses_to_features(responses):
     responses = np.array(responses).reshape(-1, 1)
     feature1 = np.mean(responses[0:14])
     feature2 = np.mean(responses[14:28])
@@ -61,19 +61,31 @@ def transform_responses_to_3_features(responses):
     return np.array([feature1, feature2, feature3]).reshape(1, -1)
 
 def generate_report(model, responses):
-    responses = transform_responses_to_3_features(responses)
-    scores = model.predict(responses)
-    depression, anxiety, stress = scores[0]
+    try:
+        responses = transform_responses_to_features(responses)
+        if np.all(responses == 0):
+            return {
+                "Depression Score": 0,
+                "Anxiety Score": 0,
+                "Stress Score": 0,
+                "Depression Interpretation": 'Normal',
+                "Anxiety Interpretation": 'Normal',
+                "Stress Interpretation": 'Normal'
+            }
+        scores = model.predict(responses)
+        depression, anxiety, stress = scores[0]
 
-    report = {
-        "Depression Score": depression,
-        "Anxiety Score": anxiety,
-        "Stress Score": stress,
-        "Depression Interpretation": 'Severe' if depression > 21 else 'Mild/Moderate' if depression > 14 else 'Normal',
-        "Anxiety Interpretation": 'Severe' if anxiety > 19 else 'Mild/Moderate' if anxiety > 10 else 'Normal',
-        "Stress Interpretation": 'Severe' if stress > 26 else 'Mild/Moderate' if stress > 18 else 'Normal'
-    }
-    return report
+        report = {
+            "Depression Score": round(depression, 2),
+            "Anxiety Score": round(anxiety, 2),
+            "Stress Score": round(stress, 2),
+            "Depression Interpretation": 'Severe' if depression > 21 else 'Mild/Moderate' if depression > 14 else 'Normal',
+            "Anxiety Interpretation": 'Severe' if anxiety > 19 else 'Mild/Moderate' if anxiety > 10 else 'Normal',
+            "Stress Interpretation": 'Severe' if stress > 26 else 'Mild/Moderate' if stress > 18 else 'Normal'
+        }
+        return report
+    except Exception as e:
+        return {"Error": str(e)}
 
 @app.route('/')
 def index():
