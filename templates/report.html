@@ -3,51 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Results Report</title>
-  <style>
-    table {
-      width: 50%;
-      border-collapse: collapse;
-      margin: 20px auto;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: center;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+  <title>Test Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<h1>Results Report</h1>
-<table>
-  <thead>
-  <tr>
-    <th>Category</th>
-    <th>Score</th>
-    <th>Interpretation</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Depression</td>
-    <td>{{ report['Depression Score'] }}</td>
-    <td>{{ report['Depression Interpretation'] }}</td>
-  </tr>
-  <tr>
-    <td>Anxiety</td>
-    <td>{{ report['Anxiety Score'] }}</td>
-    <td>{{ report['Anxiety Interpretation'] }}</td>
-  </tr>
-  <tr>
-    <td>Stress</td>
-    <td>{{ report['Stress Score'] }}</td>
-    <td>{{ report['Stress Interpretation'] }}</td>
-  </tr>
-  </tbody>
-</table>
-<a href="/">Go Back</a>
-</body>
-</html>
+<header>
+  <div class="container">
+    <h1>Your Test Results</h1>
+  </div>
+</header>
+
+<section class="results">
+  <div class="container">
+    <h2>Results Summary</h2>
+    <ul>
+      <li><strong>Depression Score:</strong> {{ report['Depression Score'] }}</li>
+      <li><strong>Anxiety Score:</strong> {{ report['Anxiety Score'] }}</li>
+      <li><strong>Stress Score:</strong> {{ report['Stress Score'] }}</li>
+    </ul>
+    <h3>Interpretations:</h3>
+    <ul>
+      <li><strong>Depression Interpretation:</strong> {{ report['Depression Interpretation'] }}</li>
+      <li><strong>Anxiety Interpretation:</strong> {{ report['Anxiety Interpretation'] }}</li>
+      <li><strong>Stress Interpretation:</strong> {{ report['Stress Interpretation'] }}</li>
+    </

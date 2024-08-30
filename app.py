@@ -85,6 +85,7 @@ def generate_report(model, responses):
         }
         return report
     except Exception as e:
+        print(f"Error generating report: {e}")
         return {"Error": str(e)}
 
 @app.route('/')
@@ -94,11 +95,26 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     try:
-        responses = [int(request.form[f'question_{i+1}']) for i in range(42)]
+        # Collect form data
+        responses = [int(request.form.get(f'question_{i+1}', 0)) for i in range(42)]
+        print(f"Responses received: {responses}")  # Debugging line
+
+        # Check if all responses are captured
+        if len(responses) != 42:
+            return "Error: Not all questions were answered."
+
+        # Generate report
         report = generate_report(model, responses)
+        print(f"Report generated: {report}")  # Debugging line
+
+        # Render report.html
         return render_template('report.html', report=report)
     except ValueError as e:
-        return str(e)
+        print(f"ValueError: {e}")  # Debugging line
+        return f"Error: {e}"
+    except Exception as e:
+        print(f"Exception: {e}")  # Debugging line
+        return f"Error: {e}"
 
 if __name__ == '__main__':
     app.run(debug=True)
