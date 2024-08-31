@@ -26,4 +26,25 @@
       <li><strong>Depression Interpretation:</strong> {{ report['Depression Interpretation'] }}</li>
       <li><strong>Anxiety Interpretation:</strong> {{ report['Anxiety Interpretation'] }}</li>
       <li><strong>Stress Interpretation:</strong> {{ report['Stress Interpretation'] }}</li>
-    
+    </ul>
+  </div>
+</section>
+
+<section class="psychiatrists">
+  <div class="container">
+    <h2>Recommended Psychiatrists</h2>
+    <div class="psychiatrist-cards">
+      {% for psychiatrist in psychiatrists %}
+      <div class="psychiatrist-card">
+        <img src="{{ url_for('static', filename=psychiatrist.photo_url) }}" alt="{{ psychiatrist.name }}">
+        <h3>{{ psychiatrist.name }}</h3>
+        <p><strong>Specialty:</strong> {{ psychiatrist.specialty }}</p>
+        <p><strong>Location:</strong> {{ psychiatrist.location }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

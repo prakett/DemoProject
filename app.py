@@ -53,6 +53,27 @@ questions = [
     "I found it difficult to work up the initiative to do things"
 ]
 
+psychiatrists = [
+    {
+        "name": "Dr. Jane Doe",
+        "specialty": "Clinical Psychologist",
+        "location": "New York, NY",
+        "photo_url": "images/jane_doe.jpg"
+    },
+    {
+        "name": "Dr. John Smith",
+        "specialty": "Psychiatrist",
+        "location": "San Francisco, CA",
+        "photo_url": "images/john_smith.jpg"
+    },
+    {
+        "name": "Dr. Emily White",
+        "specialty": "Therapist",
+        "location": "Chicago, IL",
+        "photo_url": "images/emily_white.jpg"
+    }
+]
+
 def transform_responses_to_features(responses):
     responses = np.array(responses).reshape(-1, 1)
     feature1 = np.mean(responses[0:14])
@@ -107,8 +128,8 @@ def submit():
         report = generate_report(model, responses)
         print(f"Report generated: {report}")  # Debugging line
 
-        # Render report.html
-        return render_template('report.html', report=report)
+        # Render report.html with psychiatrist data
+        return render_template('report.html', report=report, psychiatrists=psychiatrists)
     except ValueError as e:
         print(f"ValueError: {e}")  # Debugging line
         return f"Error: {e}"

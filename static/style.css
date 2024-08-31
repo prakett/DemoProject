@@ -99,3 +99,29 @@ button:hover {
         font-size: 1.5em;
     }
 }
+
+.psychiatrists {
+    margin-top: 30px;
+}
+
+.psychiatrist-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.psychiatrist-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    width: 200px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.psychiatrist-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
