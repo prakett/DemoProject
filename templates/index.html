@@ -4,66 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Depression Test Screener</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<header class="bg-light py-3">
-    <div class="container text-center">
+<header>
+    <div class="container">
         <h1>Depression Test</h1>
         <p>Find out if you are experiencing symptoms of depression.</p>
     </div>
 </header>
 
-<section class="test-section py-5">
+<section class="test-section">
     <div class="container">
-        <h2 class="text-center mb-4">Depression Symptoms Questionnaire</h2>
+        <h2>Depression Symptoms Questionnaire</h2>
         <form action="/submit" method="post" id="depression-test">
-            <div class="row">
-                {% for question in questions %}
-                <div class="col-md-12 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <label><strong>{{ loop.index }}. {{ question }}</strong></label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="question_{{ loop.index }}" value="0" id="question_{{ loop.index }}_0">
-                                <label class="form-check-label" for="question_{{ loop.index }}_0">
-                                    Did Not Apply to me at all
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="question_{{ loop.index }}" value="1" id="question_{{ loop.index }}_1">
-                                <label class="form-check-label" for="question_{{ loop.index }}_1">
-                                    Applied to me to some degree, or some of the time
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="question_{{ loop.index }}" value="2" id="question_{{ loop.index }}_2">
-                                <label class="form-check-label" for="question_{{ loop.index }}_2">
-                                    Applied to me to a considerable degree, or a good part of time
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="question_{{ loop.index }}" value="3" id="question_{{ loop.index }}_3">
-                                <label class="form-check-label" for="question_{{ loop.index }}_3">
-                                    Applied to me very much, or most of the time
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+            {% for question in questions %}
+            <div class="question">
+                <label>{{ loop.index }}. {{ question }}</label>
+                <div>
+                    <input type="radio" name="question_{{ loop.index }}" value="0"> 😊<br>
+                    <input type="radio" name="question_{{ loop.index }}" value="1"> 😐<br>
+                    <input type="radio" name="question_{{ loop.index }}" value="2"> 😕<br>
+                    <input type="radio" name="question_{{ loop.index }}" value="3"> 😢
                 </div>
-                {% endfor %}
             </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
         </form>
     </div>
 </section>
-
-<!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

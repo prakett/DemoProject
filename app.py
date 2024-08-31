@@ -137,5 +137,19 @@ def submit():
         print(f"Exception: {e}")  # Debugging line
         return f"Error: {e}"
 
+@app.route('/report')
+def report():
+    # Generate the report data
+    # Pass the 'report' dictionary to the template
+    return render_template('report.html', report=report)
+
+@app.route('/recommendation')
+def recommendation():
+    # Fetch the list of recommended psychiatrists
+    # Pass the 'psychiatrists' list to the template
+    return render_template('recommendation.html', psychiatrists=psychiatrists)
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)   
