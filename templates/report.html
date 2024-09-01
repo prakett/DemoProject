@@ -19,30 +19,41 @@
 <section class="results">
   <div class="container">
     <h2>Results Summary</h2>
-    <table>
-      <tr>
-        <th>Score Type</th>
-        <th>Score</th>
-        <th>Interpretation</th>
-      </tr>
-      <tr>
-        <td>Depression</td>
-        <td>{{ report['Depression Score'] }}</td>
-        <td>{{ report['Depression Interpretation'] }}</td>
-      </tr>
-      <tr>
-        <td>Anxiety</td>
-        <td>{{ report['Anxiety Score'] }}</td>
-        <td>{{ report['Anxiety Interpretation'] }}</td>
-      </tr>
-      <tr>
-        <td>Stress</td>
-        <td>{{ report['Stress Score'] }}</td>
-        <td>{{ report['Stress Interpretation'] }}</td>
-      </tr>
-    </table>
+    <div class="summary-and-quotes">
+      <table>
+        <tr>
+          <th>Score Type</th>
+          <th>Score</th>
+          <th>Interpretation</th>
+        </tr>
+        <tr>
+          <td>Depression</td>
+          <td>{{ report['Depression Score'] }}</td>
+          <td>{{ report['Depression Interpretation'] }}</td>
+        </tr>
+        <tr>
+          <td>Anxiety</td>
+          <td>{{ report['Anxiety Score'] }}</td>
+          <td>{{ report['Anxiety Interpretation'] }}</td>
+        </tr>
+        <tr>
+          <td>Stress</td>
+          <td>{{ report['Stress Score'] }}</td>
+          <td>{{ report['Stress Interpretation'] }}</td>
+        </tr>
+      </table>
+
+      <div class="cards">
+        {% for quote in quotes %}
+        <div class="card {{ loop.index % 3 == 1 and 'red' or (loop.index % 3 == 2 and 'blue' or 'green') }}">
+          <p class="tip">{{ quote }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </section>
+
 
 <section class="charts">
   <div class="container">

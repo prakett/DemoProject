@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import numpy as np
 import tensorflow as tf
+import random
 
 app = Flask(__name__)
 
@@ -51,7 +52,6 @@ questions = [
     "I experienced trembling (eg, in the hands)",
     "I found it difficult to work up the initiative to do things"
 ]
-# List of recommended psychiatrists
 psychiatrists = [
     {
         "name": "Dr. Jane Doe",
@@ -59,18 +59,26 @@ psychiatrists = [
         "location": "New York, NY",
         "photo_url": "images/jane_doe.jpg"
     },
-    {
-        "name": "Dr. John Smith",
-        "specialty": "Psychiatrist",
-        "location": "San Francisco, CA",
-        "photo_url": "images/john_smith.jpg"
-    },
-    {
-        "name": "Dr. Emily White",
-        "specialty": "Therapist",
-        "location": "Chicago, IL",
-        "photo_url": "images/emily_white.jpg"
-    }
+    # Add other psychiatrists here...
+]
+
+# quotes.py (optional, if you want to separate the quotes list)
+QUOTES = [
+    "The greatest glory in living lies not in never falling, but in rising every time we fall. - Nelson Mandela",
+    "The way to get started is to quit talking and begin doing. - Walt Disney",
+    "Your time is limited, don't waste it living someone else's life. - Steve Jobs",
+    "Life is what happens when you're busy making other plans. - John Lennon",
+    "The purpose of our lives is to be happy. - Dalai Lama",
+    "Get busy living or get busy dying. - Stephen King",
+    "There is hope, even when your brain tells you there isn’t.",
+    "Things not to say to someone with mental illness: Ignore it. Forget about it. Fight it. You are better than this. You are over thinking",
+    "All stress, anxiety, depression, is caused when we ignore who we are, and start living to please others.",
+    "Just because no one else can heal or do your inner work for you, doesn’t mean you can, should, or need to do it alone",
+    "Slow, deep breathing is important… It’s like an anchor in the midst of an emotional storm: the anchor won’t get rid of the storm, but it will hold you steady until it passes.",
+    "We need never be hopeless, because we can never be irreparably broken.",
+    "It takes ten times as long to put yourself back together as it does to fall apart.",
+    "I am not afraid of storms for I am learning how to sail my ship.",
+
 ]
 
 def transform_responses_to_features(responses):
@@ -127,8 +135,11 @@ def submit():
         report = generate_report(model, responses)
         print(f"Report generated: {report}")  # Debugging line
 
-        # Render report.html with psychiatrist data
-        return render_template('report.html', report=report, psychiatrists=psychiatrists)
+        # Generate 3 random quotes
+        random_quotes = random.sample(QUOTES, 3)
+
+        # Render report.html with psychiatrist data and quotes
+        return render_template('report.html', report=report, psychiatrists=psychiatrists, quotes=random_quotes)
     except ValueError as e:
         print(f"ValueError: {e}")  # Debugging line
         return f"Error: {e}"
