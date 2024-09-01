@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test Results</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -63,58 +63,12 @@
 </section>
 
 <script>
-  // Pie chart
-  var pieCtx = document.getElementById('pieChart').getContext('2d');
-  var pieChart = new Chart(pieCtx, {
-    type: 'pie',
-    data: {
-      labels: ['Depression', 'Anxiety', 'Stress'],
-      datasets: [{
-        data: [{{ report['Depression Score'] }}, {{ report['Anxiety Score'] }}, {{ report['Stress Score'] }}],
-  backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56'],
-          hoverOffset: 4
-  }]
-  },
-  options: {
-    responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-      legend: {
-        position: 'bottom',
-      },
-    }
-  }
-  });
-
-  // Bar graph
-  var barCtx = document.getElementById('barGraph').getContext('2d');
-  var barGraph = new Chart(barCtx, {
-    type: 'bar',
-    data: {
-      labels: ['Depression', 'Anxiety', 'Stress'],
-      datasets: [{
-        label: 'Score',
-        data: [{{ report['Depression Score'] }}, {{ report['Anxiety Score'] }}, {{ report['Stress Score'] }}],
-  backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56'],
-          borderWidth: 1
-  }]
-  },
-  options: {
-    responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-      y: {
-        beginAtZero: true
-      }
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-    }
-  }
-  });
+  // Pass the score data from the server to the JavaScript file
+  var depressionScore = {{ report['Depression Score'] }};
+  var anxietyScore = {{ report['Anxiety Score'] }};
+  var stressScore = {{ report['Stress Score'] }};
 </script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 </body>
 
 </html>

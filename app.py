@@ -7,7 +7,6 @@ app = Flask(__name__)
 # Load the trained model
 model = tf.keras.models.load_model('model/dass_model.h5')
 
-# List of DASS-42 questions
 questions = [
     "I found myself getting upset by quite trivial things",
     "I was aware of dryness of my mouth",
@@ -52,7 +51,7 @@ questions = [
     "I experienced trembling (eg, in the hands)",
     "I found it difficult to work up the initiative to do things"
 ]
-
+# List of recommended psychiatrists
 psychiatrists = [
     {
         "name": "Dr. Jane Doe",
@@ -137,19 +136,9 @@ def submit():
         print(f"Exception: {e}")  # Debugging line
         return f"Error: {e}"
 
-@app.route('/report')
-def report():
-    # Generate the report data
-    # Pass the 'report' dictionary to the template
-    return render_template('report.html', report=report)
-
 @app.route('/recommendation')
 def recommendation():
-    # Fetch the list of recommended psychiatrists
-    # Pass the 'psychiatrists' list to the template
     return render_template('recommendation.html', psychiatrists=psychiatrists)
 
-
-
 if __name__ == '__main__':
-    app.run(debug=True)   
+    app.run(debug=True)
