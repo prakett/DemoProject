@@ -1,12 +1,8 @@
 from flask import Flask, request, render_template
 import numpy as np
-import tensorflow as tf
 import random
 
 app = Flask(__name__)
-
-# Load the trained model
-model = tf.keras.models.load_model('model/dass_model.h5')
 
 questions = [
     "I found myself getting upset by quite trivial things",
@@ -52,6 +48,7 @@ questions = [
     "I experienced trembling (eg, in the hands)",
     "I found it difficult to work up the initiative to do things"
 ]
+
 psychiatrists = [
     {
         "name": "Dr. Jane Doe",
@@ -62,7 +59,6 @@ psychiatrists = [
     # Add other psychiatrists here...
 ]
 
-# quotes.py (optional, if you want to separate the quotes list)
 QUOTES = [
     "The greatest glory in living lies not in never falling, but in rising every time we fall. - Nelson Mandela",
     "The way to get started is to quit talking and begin doing. - Walt Disney",
@@ -78,38 +74,30 @@ QUOTES = [
     "We need never be hopeless, because we can never be irreparably broken.",
     "It takes ten times as long to put yourself back together as it does to fall apart.",
     "I am not afraid of storms for I am learning how to sail my ship.",
-
 ]
 
-def transform_responses_to_features(responses):
-    responses = np.array(responses).reshape(-1, 1)
-    feature1 = np.mean(responses[0:14])
-    feature2 = np.mean(responses[14:28])
-    feature3 = np.mean(responses[28:42])
-    return np.array([feature1, feature2, feature3]).reshape(1, -1)
+def calculate_score(responses, start_index, end_index):
+    """
+    Calculate the average score for a specific range of responses.
+    """
+    scores = responses[start_index:end_index]
+    return np.mean(scores)
 
-def generate_report(model, responses):
+def generate_report(responses):
     try:
-        responses = transform_responses_to_features(responses)
-        if np.all(responses == 0):
-            return {
-                "Depression Score": 0,
-                "Anxiety Score": 0,
-                "Stress Score": 0,
-                "Depression Interpretation": 'Normal',
-                "Anxiety Interpretation": 'Normal',
-                "Stress Interpretation": 'Normal'
-            }
-        scores = model.predict(responses)
-        depression, anxiety, stress = scores[0]
+        # Calculate scores using simple average
+        depression_score = calculate_score(responses, 0, 14)
+        anxiety_score = calculate_score(responses, 14, 28)
+        stress_score = calculate_score(responses, 28, 42)
 
+        # Interpret scores based on thresholds
         report = {
-            "Depression Score": round(depression, 2),
-            "Anxiety Score": round(anxiety, 2),
-            "Stress Score": round(stress, 2),
-            "Depression Interpretation": 'Severe' if depression > 21 else 'Mild/Moderate' if depression > 14 else 'Normal',
-            "Anxiety Interpretation": 'Severe' if anxiety > 19 else 'Mild/Moderate' if anxiety > 10 else 'Normal',
-            "Stress Interpretation": 'Severe' if stress > 26 else 'Mild/Moderate' if stress > 18 else 'Normal'
+            "Depression Score": round(depression_score, 2),
+            "Anxiety Score": round(anxiety_score, 2),
+            "Stress Score": round(stress_score, 2),
+            "Depression Interpretation": 'Severe' if depression_score > 21 else 'Mild/Moderate' if depression_score > 14 else 'Normal',
+            "Anxiety Interpretation": 'Severe' if anxiety_score > 19 else 'Mild/Moderate' if anxiety_score > 10 else 'Normal',
+            "Stress Interpretation": 'Severe' if stress_score > 26 else 'Mild/Moderate' if stress_score > 18 else 'Normal'
         }
         return report
     except Exception as e:
@@ -131,8 +119,8 @@ def submit():
         if len(responses) != 42:
             return "Error: Not all questions were answered."
 
-        # Generate report
-        report = generate_report(model, responses)
+        # Generate report using simple calculations
+        report = generate_report(responses)
         print(f"Report generated: {report}")  # Debugging line
 
         # Generate 3 random quotes
