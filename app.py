@@ -14,19 +14,19 @@ def calculate_score(responses, start_index, end_index):
 
 def generate_report(responses):
     try:
-        # Calculate scores using simple average
-        depression_score = calculate_score(responses, 0, 14)
-        anxiety_score = calculate_score(responses, 14, 28)
-        stress_score = calculate_score(responses, 28, 42)
+        # Calculate cumulative scores
+        depression_score = sum(responses[0:14])
+        anxiety_score = sum(responses[14:28])
+        stress_score = sum(responses[28:42])
 
-        # Interpret scores based on thresholds
+        # Interpret scores based on cumulative thresholds
         report = {
-            "Depression Score": round(depression_score, 2),
-            "Anxiety Score": round(anxiety_score, 2),
-            "Stress Score": round(stress_score, 2),
-            "Depression Interpretation": 'Severe' if depression_score > 21 else 'Mild/Moderate' if depression_score > 14 else 'Normal',
-            "Anxiety Interpretation": 'Severe' if anxiety_score > 19 else 'Mild/Moderate' if anxiety_score > 10 else 'Normal',
-            "Stress Interpretation": 'Severe' if stress_score > 26 else 'Mild/Moderate' if stress_score > 18 else 'Normal'
+            "Depression Score": depression_score,
+            "Anxiety Score": anxiety_score,
+            "Stress Score": stress_score,
+            "Depression Interpretation": 'Severe' if depression_score > 28 else 'Mild/Moderate' if depression_score > 20 else 'Normal',
+            "Anxiety Interpretation": 'Severe' if anxiety_score > 28 else 'Mild/Moderate' if anxiety_score > 20 else 'Normal',
+            "Stress Interpretation": 'Severe' if stress_score > 28 else 'Mild/Moderate' if stress_score > 20 else 'Normal'
         }
         return report
     except Exception as e:
