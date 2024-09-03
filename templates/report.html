@@ -43,17 +43,18 @@
         </tr>
       </table>
 
-      <div class="cards">
-        {% for quote in quotes %}
-        <div class="card {{ loop.index % 3 == 1 and 'red' or (loop.index % 3 == 2 and 'blue' or 'green') }}">
-          <p class="tip">{{ quote }}</p>
+      <div class="wrapper">
+        <div class="items">
+          {% for quote in quotes %}
+          <div class="item" tabindex="0" style="background-image: url(https://source.unsplash.com/random/{{ loop.index }})">
+            <div class="quote">{{ quote }}</div>
+          </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
     </div>
   </div>
 </section>
-
 
 <section class="charts">
   <div class="container">
@@ -66,8 +67,6 @@
     </div>
   </div>
 </section>
-
-
 
 <div class="report-section">
   <h2>Your Mental Health Report</h2>
@@ -88,28 +87,65 @@
   {% endif %}
 </div>
 
-
 <section class="recommendation-link">
   <div class="container">
     <button onclick="window.location.href='{{ url_for('recommendation') }}'">
-      Recommended physcatrist
-        <span class="text">Button</span>
-        <span class="blob"></span>
-        <span class="blob"></span>
-        <span class="blob"></span>
-        <span class="blob"></span>
-      
+      Recommended Psychiatrist
+      <span class="text">Button</span>
+      <span class="blob"></span>
+      <span class="blob"></span>
+      <span class="blob"></span>
+      <span class="blob"></span>
     </button>
   </div>
 </section>
-
 
 <script>
   // Pass the score data from the server to the JavaScript file
   var depressionScore = {{ report['Depression Score'] }};
   var anxietyScore = {{ report['Anxiety Score'] }};
   var stressScore = {{ report['Stress Score'] }};
+
+  // Initialize charts
+  window.onload = function() {
+    var ctxPie = document.getElementById('pieChart').getContext('2d');
+    var pieChart = new Chart(ctxPie, {
+      type: 'pie',
+      data: {
+        labels: ['Depression', 'Anxiety', 'Stress'],
+        datasets: [{
+          label: 'Scores',
+          data: [depressionScore, anxietyScore, stressScore],
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+          hoverOffset: 4
+        }]
+      }
+    });
+
+    var ctxBar = document.getElementById('barGraph').getContext('2d');
+    var barGraph = new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels: ['Depression', 'Anxiety', 'Stress'],
+        datasets: [{
+          label: 'Scores',
+          data: [depressionScore, anxietyScore, stressScore],
+          backgroundColor: '#36A2EB',
+          borderColor: '#36A2EB',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
 </script>
+
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 </body>
 
