@@ -17,13 +17,67 @@ QUOTES = [
 
 psychiatrists = [
     {
-        "name": "Dr. Jane Doe",
+        "name": "Dr. John Smith",
         "specialty": "Clinical Psychologist",
         "location": "New York, NY",
-        "photo_url": "images/jane_doe.jpg"
+        "contact": "123-456-7890"
     },
-    # Add other psychiatrists here...
+    {
+        "name": "Dr. Jane Doe",
+        "specialty": "Psychiatrist",
+        "location": "Los Angeles, CA",
+        "contact": "987-654-3210"
+    },
+    {
+        "name": "Dr. Alice Johnson",
+        "specialty": "Mental Health Counselor",
+        "location": "Chicago, IL",
+        "contact": "555-123-4567"
+    },
+    {
+        "name": "Dr. Michael Brown",
+        "specialty": "Child Psychiatrist",
+        "location": "Houston, TX",
+        "contact": "444-987-6543"
+    },
+    {
+        "name": "Dr. Emily White",
+        "specialty": "Clinical Psychologist",
+        "location": "San Francisco, CA",
+        "contact": "222-456-7890"
+    },
+    {
+        "name": "Dr. David Lee",
+        "specialty": "Psychiatrist",
+        "location": "Seattle, WA",
+        "contact": "333-789-0123"
+    },
+    {
+        "name": "Dr. Sarah Thompson",
+        "specialty": "Mental Health Counselor",
+        "location": "Boston, MA",
+        "contact": "111-234-5678"
+    },
+    {
+        "name": "Dr. Robert Wilson",
+        "specialty": "Addiction Psychiatrist",
+        "location": "Miami, FL",
+        "contact": "666-345-6789"
+    },
+    {
+        "name": "Dr. Laura Martinez",
+        "specialty": "Psychotherapist",
+        "location": "Denver, CO",
+        "contact": "777-456-7890"
+    },
+    {
+        "name": "Dr. William Garcia",
+        "specialty": "Clinical Psychologist",
+        "location": "Phoenix, AZ",
+        "contact": "888-567-8901"
+    }
 ]
+
 
 questions = [
     "I found myself getting upset by quite trivial things",
