@@ -5,10 +5,12 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4;
+    background-color:black;
     margin: 0;
     padding: 0;
+    
 }
+
 
 /* Header Styles */
 header {
@@ -27,9 +29,9 @@ header h1 {
 
 /* Results Section */
 .results {
-    background-color: #fff;
+    background-color: #f4f4f9;
     padding: 2rem 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .results .container {
@@ -39,64 +41,138 @@ header h1 {
 
 .results h2 {
     margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
 }
 
 .results table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .results th, .results td {
     border: 1px solid #ddd;
-    padding: 0.5rem;
+    padding: 1rem;
     text-align: center;
 }
 
 .results th {
     background-color: #007bff;
     color: #fff;
+    font-weight: bold;
+}
+
+.results tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.results tr:hover {
+    background-color: #e9ecef;
+}
+
+.results td {
+    font-size: 1rem;
+    color: #333;
 }
 
 .cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: space-between;
+    gap: 15px;
+    justify-content: center;
 }
 
 .card {
-    background-color: #e9ecef;
+    background-color: #fff;
     border-radius: 8px;
-    padding: 1rem;
-    flex: 1 1 calc(33.333% - 1rem); /* Adjusted for gap */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 200px;
+    text-align: center;
 }
 
 .card.red {
-    background-color: #ff4c4c;
-    color: #fff;
+    background-color: #f8d7da;
 }
 
 .card.blue {
-    background-color: #4c6ef5;
-    color: #fff;
+    background-color: #d1ecf1;
 }
 
 .card.green {
-    background-color: #4caf50;
-    color: #fff;
+    background-color: #d4edda;
+}
+
+.tip {
+    font-size: 16px;
+    color: #333;
+}
+
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem; /* Add margin to separate from other elements if needed */
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  background: mediumturquoise;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: fantasy;
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden; /* Ensure content doesn't overflow */
+  text-align: center;
+}
+
+.card::before {
+  content: "HELLO";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: adds a translucent background */
+  color: white;
+  font-size: 30px;
+  opacity: 1; /* Initially visible */
+  transition: opacity 0.5s;
+  z-index: 1; /* Ensure it appears above the quote initially */
+}
+
+.card:hover::before {
+  opacity: 0; /* Fades out when hovered */
+  transition: opacity 0.5s;
 }
 
 .card .tip {
-    margin: 0;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s 0.5s; /* Delay to show after HELLO starts to fade */
+  position: relative;
+  z-index: 2; /* Ensure it's on top of the card background */
 }
+
+.card:hover .tip {
+  opacity: 1; /* Fades in after HELLO fades out */
+}
+
+
+
+
 
 /* Charts Section */
 .charts {
@@ -111,7 +187,42 @@ header h1 {
 
 .chart-container {
     margin: 2rem auto;
+    width: 50%; /* Reduced width to make the charts smaller */
 }
+
+.pie-chart {
+    width: 45%; /* Adjusted size for the pie chart */
+    animation: rotateReveal 2s ease-in-out; /* Animation added to the pie chart */
+}
+@keyframes rotateReveal {
+    0% { transform: rotate(360deg); opacity: 0; }
+    100% { transform: rotate(0deg); opacity: 1; }
+  }
+  
+.bar-graph {
+    width: 70%; /* Adjusted size for the bar graph */
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chart-container {
+        width: 90%;
+
+}
+
+@media (max-width: 480px) {
+    .charts h1 {
+        font-size: 1.5rem;
+    }
+
+    .chart-container {
+        width: 100%;
+    }
+}
+
 
 /* Recommendation Link Section */
 .recommendation-link {
@@ -119,22 +230,102 @@ header h1 {
     padding: 1rem 0;
     text-align: center;
 }
-
-.recommendation-link button {
-    background-color: #fff;
-    color: #007bff;
-    border: none;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
+/* From Uiverse.io by adamgiebl */ 
+button {
+    position: relative;
+    font-family: inherit;
+    font-size: 18px;
+    border-radius: 40em;
+    width: 8em;
+    height: 3em;
+    z-index: 1;
+    color: white;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
+    overflow: hidden;
+    border: none;
+  }
+  
+  button .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 3em;
+    border-radius: 40em;
+    border: none;
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.473),
+      rgba(150, 150, 150, 0.25)
+    );
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  button .blob {
+    position: absolute;
+    z-index: -1;
+    border-radius: 5em;
+    width: 5em;
+    height: 3em;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+  }
+  
+  button .blob:nth-child(2) {
+    left: 0em;
+    top: 0;
+    background: #ff930f;
+  }
+  
+  button .blob:nth-child(3) {
+    left: 1.8em;
+    top: 0;
+    z-index: -1;
+    background: #bf0fff;
+  }
+  
+  button .blob:nth-child(4) {
+    left: 4em;
+    top: -1em;
+    background: #ff1b6b;
+  }
+  
+  button .blob:nth-child(5) {
+    left: 4.3em;
+    top: 1.6em;
+    background: #0061ff;
+  }
+  
+  button:hover .blob:nth-child(2) {
+    background: #0061ff;
+  }
+  
+  button:hover .blob:nth-child(3) {
+    background: #ff1b6b;
+  }
+  
+  button:hover .blob:nth-child(4) {
+    background: #bf0fff;
+  }
+  
+  button:hover .blob:nth-child(5) {
+    background: #ff930f;
+  }
+  
+  button:hover .blob {
+    transform: scale(1.3);
+  }
+  
+  button:active {
+    border: 2px solid white;
+  }
+  
 
-.recommendation-link button:hover {
-    background-color: #007bff;
-    color: #fff;
-}
+
+
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -161,3 +352,5 @@ header h1 {
         font-size: 0.875rem;
     }
 }
+}
+

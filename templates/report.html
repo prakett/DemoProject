@@ -57,21 +57,52 @@
 
 <section class="charts">
   <div class="container">
-    <h2>Visual Representation</h2>
-    <div class="chart-container" style="width: 60%; margin: auto;">
+    <h1>Visual Representation</h1>
+    <div class="chart-container pie-chart">
       <canvas id="pieChart"></canvas>
     </div>
-    <div class="chart-container" style="width: 80%; margin: auto;">
+    <div class="chart-container bar-graph">
       <canvas id="barGraph"></canvas>
     </div>
   </div>
 </section>
 
+
+
+<div class="report-section">
+  <h2>Your Mental Health Report</h2>
+  <p><strong>Depression Score:</strong> {{ report["Depression Score"] }} - {{ report["Depression Interpretation"] }}</p>
+  <p><strong>Feedback:</strong> {{ report["Depression Feedback"] }}</p>
+
+  <p><strong>Anxiety Score:</strong> {{ report["Anxiety Score"] }} - {{ report["Anxiety Interpretation"] }}</p>
+  <p><strong>Feedback:</strong> {{ report["Anxiety Feedback"] }}</p>
+
+  <p><strong>Stress Score:</strong> {{ report["Stress Score"] }} - {{ report["Stress Interpretation"] }}</p>
+  <p><strong>Feedback:</strong> {{ report["Stress Feedback"] }}</p>
+
+  {% if report.get("Follow-up Question") %}
+  <div class="follow-up">
+    <h3>Follow-up Question:</h3>
+    <p>{{ report["Follow-up Question"] }}</p>
+  </div>
+  {% endif %}
+</div>
+
+
 <section class="recommendation-link">
   <div class="container">
-    <button onclick="window.location.href='{{ url_for('recommendation') }}'">View Recommended Psychiatrists</button>
+    <button onclick="window.location.href='{{ url_for('recommendation') }}'">
+      Recommended physcatrist
+        <span class="text">Button</span>
+        <span class="blob"></span>
+        <span class="blob"></span>
+        <span class="blob"></span>
+        <span class="blob"></span>
+      
+    </button>
   </div>
 </section>
+
 
 <script>
   // Pass the score data from the server to the JavaScript file
