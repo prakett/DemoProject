@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template
 import numpy as np
 import random
+
+from pandas.io.formats.format import return_docstring
+
 from data import questions, psychiatrists, QUOTES  # Import from data.py
 
 app = Flask(__name__)
@@ -76,7 +79,7 @@ def generate_report(responses):
         return {"Error": str(e)}
 
 
-@app.route('/')
+@app.route('/index')
 def index():
     return render_template('index.html', questions=questions)
 
@@ -110,6 +113,19 @@ def submit():
 @app.route('/recommendation')
 def recommendation():
     return render_template('recommendation.html', psychiatrists=psychiatrists)
+
+@app.route('/')
+def first():
+    return render_template('first.html')
+
+@app.route('/second')
+def second():
+    return render_template('second.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

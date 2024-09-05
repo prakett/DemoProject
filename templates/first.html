@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Custom Website</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/my.css') }}">
+</head>
+<body>
+<!-- Front-Page -->
+<div class="wrapper">
+	<nav class="navbar">
+		<!-- Updated the image src to use url_for for static files -->
+		<img class="logo" src="{{ url_for('static', filename='images/SIH Logo2.jpg') }}" alt="SIH Logo">
+		<ul>
+			<li><a class="active" href="{{ url_for('index') }}">Check Mental Health Score</a></li>
+
+			<li><a href="#">About</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">FAQs</a></li>
+			<li><a href="{{ url_for('second') }}">Login</a></li>
+		</ul>
+	</nav>
+	<div class="center">
+		<h2>Understanding your mental health </h2>
+		<h2>is a first step for a happier, healthier you</h2>
+	</div>
+</div>
+</body>
+</html>
