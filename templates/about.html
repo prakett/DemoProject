@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Depression Test</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f7f8;
+            color: #333;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #059498, #f79f1f, #ee5253, #10ac84, #ff9ff3);
+            background-size: 300% 300%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+
+        /* Background Animation Keyframes */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background-color: rgba(5, 148, 152, 0.9);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 3rem 1rem;
+            text-align: center;
+            background-color: rgba(204, 242, 243, 0.8); /* Semi-transparent background */
+            border-radius: 15px;
+            max-width: 900px;
+            margin: 3rem auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            color: #059498;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(5, 148, 152, 0.9);
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        /* Sparkle Background */
+        .sparkle-bg {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: sparkle 2s ease-out forwards;
+        }
+
+        /* Keyframes for Sparkle Animation */
+        @keyframes sparkle {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="sparkle-bg" id="sparkle-bg">
+    <!-- Animated Background Layer -->
+    <div class="animated-bg"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>Depression Test</h1>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2>About the Depression Test</h2>
+            <p>This test is designed to help assess symptoms of depression. It is not a diagnosis, but rather a tool to better understand mental health and guide conversations with healthcare professionals.</p>
+            <p>Depression can manifest in various ways, including feelings of sadness, lack of interest in activities, and changes in appetite or sleep patterns. The test will ask a series of questions related to these symptoms.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Depression Test. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener('click', function(e) {
+        const sparkleBg = document.getElementById('sparkle-bg');
+
+        // Create a new sparkle
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+
+        // Set random size and color for the sparkle
+        const size = Math.random() * 30 + 10; // Random size between 10px and 40px
+        sparkle.style.width = `${size}px`;
+        sparkle.style.height = `${size}px`;
+
+        const colors = ['#059498', '#f79f1f', '#ee5253', '#10ac84', '#ff9ff3']; // Various colors for sparkle
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.backgroundColor = randomColor;
+
+        // Set position to where the click occurred
+        sparkle.style.left = `${e.pageX - size / 2}px`;
+        sparkle.style.top = `${e.pageY - size / 2}px`;
+
+        // Append the sparkle to the background
+        sparkleBg.appendChild(sparkle);
+
+        // Remove the sparkle after the animation ends
+        setTimeout(() => {
+            sparkle.remove();
+        }, 2000); // Sparkle will be removed after 2 seconds
+    });
+</script>
+</body>
+</html>
