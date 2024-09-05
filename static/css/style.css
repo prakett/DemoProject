@@ -1,239 +1,153 @@
+/* General Styles */
+
 body {
-    font-family: Arial, sans-serif;
-    margin-top: 20px;
-    padding: 40px 20px;
-    background-color: #f8f8f8;
+    font-family: 'Nunito', sans-serif;
+    background-color: #f5f7fa;
     color: #333;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-header {
-    background-color: #431ae3;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-header h1 {
     margin: 0;
-    font-size: 2.5em;
+    padding: 0;
 }
 
-header p {
-    margin: 5px 0 0;
-    font-size: 1.2em;
-}
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-.test-section {
-    background-color: white;
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-}
-
-.test-section h2 {
-    font-size: 1.8em;
-    color: #a83232;
-    margin-bottom: 20px;
+/* Header Section */
+.hero-section {
+    background-color: #0a9396;
+    color: white;
+    padding: 50px 0;
     text-align: center;
 }
 
-.test-section form {
-    display: flex;
-    flex-direction: column;
-}
-
-.question {
-    margin-bottom: 20px;
-}
-
-.question label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.question div {
-    margin-left: 20px;
-}
-
-input[type="radio"] {
-    margin-right: 10px;
-}
-
-/* Gradient Button Styling */
-button {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
-    border: 0;
-    vertical-align: middle;
-    text-decoration: none;
-    font-family: inherit;
-    font-size: 1.2em;
-    color: #fff;
-    text-transform: uppercase;
-    padding: 1.25em 2em;
-    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient background */
-    border: 2px solid #2575fc;
-    border-radius: 0.75em;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    transition: background 150ms cubic-bezier(0, 0, 0.58, 1), transform 150ms cubic-bezier(0, 0, 0.58, 1);
-}
-
-button::before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent overlay */
-    border-radius: inherit;
-    box-shadow: 0 0 0 2px #2575fc, 0 0.625em 0 0 rgba(255, 255, 255, 0.2);
-    transform: translate3d(0, 0.75em, -1em);
-    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-}
-
-button:hover {
-    background: linear-gradient(45deg, #2575fc, #6a11cb); /* Reverse gradient on hover */
-    transform: translate(0, 0.25em);
-}
-
-button:hover::before {
-    box-shadow: 0 0 0 2px #2575fc, 0 0.5em 0 0 rgba(255, 255, 255, 0.2);
-    transform: translate3d(0, 0.5em, -1em);
-}
-
-button:active {
-    background: linear-gradient(45deg, #2575fc, #6a11cb); /* Maintain gradient on active */
-    transform: translate(0em, 0.75em);
-}
-
-button:active::before {
-    box-shadow: 0 0 0 2px #2575fc, 0 0 #ffe3e2;
-    transform: translate3d(0, 0, -1em);
-}
-
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2em;
-    }
-
-    .test-section h2 {
-        font-size: 1.5em;
-    }
-}
-
-.psychiatrists {
-    margin-top: 30px;
-}
-
-.psychiatrist-cards {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.psychiatrist-card {
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
-    width: 200px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
-
-.psychiatrist-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
-
-/* Results and Quotes Section Styling */
-.results .container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.summary-and-quotes {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 30px;
-}
-
-.summary-and-quotes table {
-    width: 50%;
-    border-collapse: collapse;
-}
-
-.summary-and-quotes table th,
-.summary-and-quotes table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-/* Quotes Card Section */
-.cards {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 45%;
-}
-
-.cards .red {
-    background-color: #ec586f;
-}
-
-.cards .blue {
-    background-color: #538bea;
-}
-
-.cards .green {
-    background-color: #4cd884;
-}
-
-.cards .card {
+.header-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    height: 100px;
-    width: 100%;
+    gap: 15px; /* Space between icon and title */
+}
+
+.header-icon {
+    width: 80px; /* Adjust size as needed */
+    height: 80px;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* Test Section */
+.test-section {
+    padding: 40px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container {
+    width: 60%; /* Occupy 60% of the screen width */
+    margin-left: 10%; /* Add a 10% gap on the left side */
+    max-width: 1000px;
+}
+
+/* Question Card */
+.question-card {
+    background: rgb(219, 242, 244);
     border-radius: 10px;
-    color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.question-card label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Response Options */
+.response-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.response-emoji {
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: 400ms;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth scaling and shadow */
 }
 
-.cards .card p.tip {
-    font-size: 1em;
-    font-weight: 700;
+/* Add a green circle around the selected emoji */
+input[type="radio"]:checked + .response-emoji {
+    transform: scale(1.3); /* Slightly enlarge the selected emoji */
+    box-shadow: 0 0 0 5px #0a9396; /* Green circle around selected emoji */
 }
 
-.cards .card:hover {
-    transform: scale(1.1, 1.1);
+input[type="radio"] {
+    display: none;
 }
 
-.cards:hover > .card:not(:hover) {
-    filter: blur(10px);
-    transform: scale(0.9, 0.9);
+/* Submit Button */
+.btn-primary {
+    display: block;
+    width: 100%;
+    background-color: #0a9396;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+/* Question Card */
+.question-card {
+    background: rgb(219, 242, 244);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.question-label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Response Options */
+.response-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    align-items: center; /* Center align the items vertically */
+}
+
+.response-emoji {
+    font-size: 2rem; /* Slightly larger emojis for better visibility */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block; /* Make emojis block-level for alignment */
+}
+
+.emoji-title {
+    font-size: 0.8rem; /* Slightly smaller font for titles */
+    text-align: center;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Add a green circle around the selected emoji */
+input[type="radio"]:checked + .response-emoji {
+    transform: scale(1.3);
+    box-shadow: 0 0 0 5px #0a9396;
+}
+.btn-primary:hover {
+    background-color: #5a7890;
 }

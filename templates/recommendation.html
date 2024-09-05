@@ -16,7 +16,7 @@
 
 <header>
   <div class="container">
-    <h1>Recommended Psychiatrists</h1>
+    <h1 class="header-title">Recommended Psychiatrists in Your Region</h1>
   </div>
 </header>
 
@@ -48,9 +48,11 @@
   bokeh1Background.loadMap('https://cdn.jsdelivr.net/npm/threejs-components@0.0.2/build/assets/bokeh-particles2.png');
   bokeh1Background.setColors([0x6d4862, 0xfd826c, 0x22ccc1]);
 
-  document.body.addEventListener('click', () => {
-    bokeh1Background.setColors([0xffffff * Math.random(), 0xffffff * Math.random(), 0xffffff * Math.random()]);
-  });
+  // Removed the color-changing effect on click
+  // document.body.addEventListener('click', () => {
+  //   bokeh1Background.setColors([0xffffff * Math.random(), 0xffffff * Math.random(), 0xffffff * Math.random()]);
+  // });
 </script>
+
 </body>
 </html>

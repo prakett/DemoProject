@@ -197,7 +197,7 @@ header {
     top: 0;
     margin-left: -50%;
     margin-top: -70%;
-    background: linear-gradient(744deg,#af40ff,#5b42f3 60%,#00ddeb);
+    background: linear-gradient(744deg, #f83148, #42caf3 60%,#00ddeb);
     border-radius: 40%;
     animation: wave 55s infinite linear;
 }
@@ -212,3 +212,13 @@ header {
 }
 
 /* Adjust other styles as needed, e.g., .image, .infotop, .name */
+
+/* Style for the header and h1 */
+.header-title {
+    color: #ffffff; /* Set the text color to white */
+    font-size: 60px;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}

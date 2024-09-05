@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Results</title>
+  <title>Your Mental Health Report</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-<header>
+<header class="header">
   <div class="container">
     <h1>Your Test Results</h1>
   </div>
@@ -20,7 +20,7 @@
   <div class="container">
     <h2>Results Summary</h2>
     <div class="summary-and-quotes">
-      <table>
+      <table class="results-table">
         <tr>
           <th>Score Type</th>
           <th>Score</th>
@@ -101,52 +101,69 @@
 </section>
 
 <script>
-  // Pass the score data from the server to the JavaScript file
+  // Directly embed the values from Flask as JavaScript variables
   var depressionScore = {{ report['Depression Score'] }};
   var anxietyScore = {{ report['Anxiety Score'] }};
   var stressScore = {{ report['Stress Score'] }};
 
-  // Initialize charts
-  window.onload = function() {
-    var ctxPie = document.getElementById('pieChart').getContext('2d');
-    var pieChart = new Chart(ctxPie, {
-      type: 'pie',
-      data: {
-        labels: ['Depression', 'Anxiety', 'Stress'],
-        datasets: [{
-          label: 'Scores',
-          data: [depressionScore, anxietyScore, stressScore],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-          hoverOffset: 4
-        }]
-      }
-    });
+  // Check if variables are properly interpreted by the browser
+  console.log(depressionScore, anxietyScore, stressScore);
 
-    var ctxBar = document.getElementById('barGraph').getContext('2d');
-    var barGraph = new Chart(ctxBar, {
-      type: 'bar',
-      data: {
-        labels: ['Depression', 'Anxiety', 'Stress'],
-        datasets: [{
-          label: 'Scores',
-          data: [depressionScore, anxietyScore, stressScore],
-          backgroundColor: '#36A2EB',
-          borderColor: '#36A2EB',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
+  // Pie chart initialization
+  var pieCtx = document.getElementById('pieChart').getContext('2d');
+  var pieChart = new Chart(pieCtx, {
+    type: 'pie',
+    data: {
+      labels: ['Depression', 'Anxiety', 'Stress'],
+      datasets: [{
+        data: [depressionScore, anxietyScore, stressScore],
+        backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56'],
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+        },
       }
-    });
-  }
+    }
+  });
+
+  // Bar graph initialization
+  var barCtx = document.getElementById('barGraph').getContext('2d');
+  var barGraph = new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Depression', 'Anxiety', 'Stress'],
+      datasets: [{
+        label: 'Score',
+        data: [depressionScore, anxietyScore, stressScore],
+        backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      }
+    }
+  });
 </script>
 
-<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<!-- Here we have written the js code directly under script tag as by embedding the values directly, we avoid any unexpected behavior related to template rendering-->
 </body>
 
 </html>
+
